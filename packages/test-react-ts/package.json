@@ -1,0 +1,40 @@
+{
+  "name": "unnamed",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "process": "^0.11.10",
+    "react": "^17.0.2",
+    "react-babylonjs": "^3.0.17",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@playwright/test": "^1.12.3",
+    "@types/node": "^12.20.15",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.8",
+    "@types/terser-webpack-plugin": "^5.0.4",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^3.11.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "html-webpack-plugin": "^5.3.2",
+    "playwright-module-loader": "1.0.0",
+    "style-loader": "^3.0.0",
+    "terser-webpack-plugin": "^5.1.4",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.10.1",
+    "typescript": "^4.3.5",
+    "webpack": "^5.42.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "build": "webpack --mode=production --config webpack.config.ts",
+    "test": "playwright test --config=playwright.config.ts",
+    "test:debug": "PWDEBUG=console playwright test --config=playwright.config.ts"
+  }
+}

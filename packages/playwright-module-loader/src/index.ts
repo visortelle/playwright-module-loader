@@ -116,12 +116,13 @@ export async function load(
         }
       });
 
-      const startTime = Date.now();
+      const loadScriptsStartTime = Date.now();
       await Promise.all(promises);
 
       // Open a blank page after modules are loaded.
+      // TODO - Consider add `thenGoto(...)` option to avoid unnecessary page reload if test page shouldn't be the blank page.
       await page.reload();
-      log(`Adding modules to the page took ${((Date.now() - startTime) / 1000).toFixed(2)} seconds.`);
+      log(`Adding modules to the page took ${((Date.now() - loadScriptsStartTime) / 1000).toFixed(2)} seconds.`);
 
       log("Modules should be available at the page's global context, in other words as `window.ModuleName`.");
       log("If you have questions, feel free to raise an issue here: https://github.com/visortelle/playwright-module-loader");

@@ -1,23 +1,11 @@
 {
-  "name": "playwright-module-loader",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "root",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "lerna clean --yes && lerna bootstrap",
+    "test": "npm run build && cd packages/playwright-module-loader && npm test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/visortelle/playwright-module-loader.git"
-  },
-  "keywords": [
-    "playwright",
-    "testing"
-  ],
-  "author": "visortelle@gmail.com",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/visortelle/playwright-module-loader/issues"
-  },
-  "homepage": "https://github.com/visortelle/playwright-module-loader#readme"
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
 }

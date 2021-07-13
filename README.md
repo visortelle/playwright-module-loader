@@ -4,6 +4,10 @@ Moved source code from a personal repo just for demo reason. Don't try to use it
 
 Maybe a better approach will be provided by Playwright maintainers. Tracking issue: https://github.com/microsoft/playwright/issues/7148. Now awaiting for feedback.
 
+# Test 
+
+`npm test`
+
 # playwright-module-loader
 
 | Webpack | Playwright |
