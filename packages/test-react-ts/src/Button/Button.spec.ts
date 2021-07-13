@@ -1,20 +1,11 @@
 import { test, expect } from "@playwright/test";
-import { load } from '../playwright-module-loader';
+import { load } from '../testing';
 
 test("TestButton contains text", async ({ page, context }) => {
-  await load(
-    {
-      Button: "src/Button/Button.tsx",
-      React: "react",
-      ReactDOM: "react-dom",
-    },
-    context
-  );
+  await load({ Button: "src/Button/Button.tsx" }, context);
 
   await page.evaluate(() => {
-    const reactRoot = document.createElement("div");
-    document.body.appendChild(reactRoot);
-    ReactDOM.render(React.createElement(Button.default), reactRoot);
+    ct.mount(React.createElement(Button.default));
   });
 
   const testButton = await page.waitForSelector('#test-button');
