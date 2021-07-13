@@ -3,6 +3,7 @@ import { BrowserContext } from "@playwright/test";
 import fs from "fs";
 import os from "os";
 import path from "path";
+import { monkeyPatch } from './webpack-config-monkey-patches';
 
 const projectName = "playwright-module-loader";
 
@@ -43,22 +44,10 @@ export async function load(
     const page = context.pages()[0];
     const webpackConfig = _options.webpackConfig as WebpackConfig;
 
-    // Fail on errors instead of tolerating them.
-    webpackConfig.bail = true;
-
-    // Force development mode to increase build speed.
-    webpackConfig.mode = "development";
-
-    // Force source maps type that works in this setup. Optionally disable source maps.
-    // webpackConfig.devtool = _options.ci ? false : "inline-cheap-source-map"; // TODO - fix sourcemaps
-    webpackConfig.devtool = false;
+    await monkeyPatch(webpackConfig);
 
     // Override default webpack entry with provided modules list.
     webpackConfig.entry = modules;
-
-    // Remove various stuff that prevent proper builds.
-    delete webpackConfig.optimization?.runtimeChunk;
-    delete webpackConfig.optimization?.splitChunks;
 
     // Output build result to temporary directory.
     const outputDir = path.resolve(os.tmpdir(), `./${projectName}`);
@@ -66,8 +55,8 @@ export async function load(
       path: outputDir,
       filename: "[name].[contenthash].js",
       library: {
-        // Use UMD modules to make modules available as variables in global context.
-        type: "umd",
+        // Make modules available as variables in the global context.
+        type: "window",
         name: "[name]",
       },
     };
@@ -101,11 +90,11 @@ export async function load(
       }
 
       const promises: Promise<void>[] = assets.map(async (asset) => {
-        const umdJs = fs.readFileSync(path.resolve(outputDir, `./${asset}`), {
+        const js = fs.readFileSync(path.resolve(outputDir, `./${asset}`), {
           encoding: "utf-8",
         });
 
-        await context.addInitScript({ content: initUmdAfterLoad(umdJs) });
+        await context.addInitScript({ content: initJsAfterLoad(js) });
 
         if (_options.debug) {
           const modulePath = path.resolve(outputDir, asset);
@@ -148,8 +137,8 @@ function scheduleFsCleanup(dir: string, assets: string[]) {
  *
  * There are more issues can potentially appear without this fix.
  */
-function initUmdAfterLoad(umdJs: string): string {
-  return `globalThis.addEventListener('load', function() { ${umdJs} });`;
+function initJsAfterLoad(js: string): string {
+  return `globalThis.addEventListener('load', function() { ${js} });`;
 }
 
 function log(message: string): void {
