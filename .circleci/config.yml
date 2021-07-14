@@ -1,0 +1,14 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: node:14
+    steps:
+      - checkout
+      - run: npm i && npm test
+
+workflows:
+  sample:
+    jobs:
+      - test
