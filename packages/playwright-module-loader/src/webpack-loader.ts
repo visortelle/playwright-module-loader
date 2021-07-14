@@ -61,8 +61,6 @@ export async function load(
       },
     };
 
-    console.log(webpackConfig);
-
     const compiler = webpack(webpackConfig);
 
     log('Compiling modules ...');
