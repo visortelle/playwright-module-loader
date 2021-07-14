@@ -1,18 +1,10 @@
 {
   "name": "playwright-module-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "build/index.js",
-  "exports": {
-    ".": "./build/index.js",
-    "./ct/react": "./build/ct/react.js"
-  },
-  "files": [
-    "README.md",
-    "build"
-  ],
+  "main": "lib/index.js",
   "scripts": {
-    "build": "rimraf build && tsc --project tsconfig.json",
+    "build": "rimraf lib && tsc --project tsconfig.json",
     "prepublish": "npm run build"
   },
   "repository": {

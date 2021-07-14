@@ -17,7 +17,7 @@
       "src/*": ["src/*"]
     },
     "declaration": true,
-    "outDir": "./build"
+    "outDir": "./lib"
   },
   "include": [
     "src/**/*.ts"
