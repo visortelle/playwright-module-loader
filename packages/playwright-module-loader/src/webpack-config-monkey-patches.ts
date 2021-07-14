@@ -45,7 +45,7 @@ async function fixReact(webpackConfig: Configuration, context: BrowserContext): 
   await context.addInitScript({ content: fs.readFileSync(path.resolve(__dirname, '../src/react-dom.development.js'), { encoding: 'utf-8' }) });
 
   webpackConfig.externals = {
-    react: 'React',
+    'react': 'React',
     'react-dom': 'ReactDOM'
   }
 }

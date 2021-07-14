@@ -1,5 +1,5 @@
 import { loadWithWebpack } from "playwright-module-loader";
-import createWebpackConfig from "../webpack.config";
+import createWebpackConfig from "react-scripts/config/webpack.config";
 
 /** Helper function with preconfigured webpack. */
 export function load(...[modules, context, options]: Parameters<typeof loadWithWebpack>): ReturnType<typeof loadWithWebpack> {
@@ -9,6 +9,6 @@ export function load(...[modules, context, options]: Parameters<typeof loadWithW
       ct: 'playwright-module-loader/ct/react'
      },
     context,
-    { webpackConfig: createWebpackConfig(), ...options }
+    { webpackConfig: createWebpackConfig('development'), ...options }
   );
 }

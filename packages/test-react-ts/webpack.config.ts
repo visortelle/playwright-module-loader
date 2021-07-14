@@ -2,7 +2,7 @@ import path from "path";
 import webpack, { Configuration } from "webpack";
 import TerserPlugin from "terser-webpack-plugin";
 
-export default (_: any, { mode }: { mode: "development" | "production" }): Configuration => ({
+export default (_: any = undefined, { mode }: { mode: "development" | "production" } = { mode: 'development' }): Configuration => ({
   mode,
   entry: path.resolve(__dirname, "./src/index.ts"),
   optimization: {

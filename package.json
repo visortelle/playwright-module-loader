@@ -2,8 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build": "lerna clean --yes && lerna bootstrap",
-    "test": "npm run build && cd packages/playwright-module-loader && npm test"
+    "build": "npm install && lerna clean --yes && lerna bootstrap",
+    "test": "lerna run --scope playwright-module-loader build && lerna run test"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

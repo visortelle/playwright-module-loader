@@ -13,8 +13,7 @@
   ],
   "scripts": {
     "build": "rimraf build && tsc --project tsconfig.json",
-    "prepublish": "npm run build",
-    "test": "cd ../test-react-ts && npm test"
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
