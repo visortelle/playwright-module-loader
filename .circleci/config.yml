@@ -7,7 +7,6 @@ jobs:
     steps:
       - checkout
       - run: |
-          npx playwright install // https://github.com/microsoft/playwright/issues/4033#issuecomment-877099201
           npm i && npm test
 
 workflows:

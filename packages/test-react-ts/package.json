@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "playwright": "^1.12.3",
     "process": "^0.11.10",
     "react": "^17.0.2",
     "react-babylonjs": "^3.0.17",
