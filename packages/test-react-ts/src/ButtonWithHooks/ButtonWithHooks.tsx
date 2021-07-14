@@ -7,10 +7,8 @@ export default () => {
   const [counter, setCounter] = useState(42);
 
   useEffect(() => {
-    setInterval(() => {
-      setCounter(counter + 1);
-    }, 100);
-  }, []);
+    setTimeout(() => setCounter(counter + 1), 100);
+  }, [counter]);
 
   return (<button id="test-button">Test button {counter}</button>);
 }

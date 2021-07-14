@@ -44,7 +44,7 @@ export async function load(
     const page = context.pages()[0];
     const webpackConfig = _options.webpackConfig as WebpackConfig;
 
-    await monkeyPatch(webpackConfig);
+    await monkeyPatch(webpackConfig, context);
 
     // Override default webpack entry with provided modules list.
     webpackConfig.entry = modules;
@@ -111,6 +111,7 @@ export async function load(
       // Open a blank page after modules are loaded.
       // TODO - Consider add `thenGoto(...)` option to avoid unnecessary page reload if test page shouldn't be the blank page.
       await page.reload();
+
       log(`Adding modules to the page took ${((Date.now() - loadScriptsStartTime) / 1000).toFixed(2)} seconds.`);
 
       log("Modules should be available at the page's global context, in other words as `window.ModuleName`.");

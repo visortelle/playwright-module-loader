@@ -6,8 +6,6 @@ export function load(...[modules, context, options]: Parameters<typeof loadWithW
   return loadWithWebpack(
     {
       ...modules,
-      React: 'react',
-      ReactDOM: 'react-dom',
       ct: 'playwright-module-loader-react-helper'
      },
     context,

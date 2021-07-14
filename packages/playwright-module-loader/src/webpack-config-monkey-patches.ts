@@ -1,6 +1,9 @@
-import { Configuration, webpack } from "webpack";
+import  fs from 'fs';
+import path from 'path';
+import { BrowserContext } from '@playwright/test';
+import { Configuration } from "webpack";
 
-export async function monkeyPatch(webpackConfig: Configuration): Promise<void> {
+export async function monkeyPatch(webpackConfig: Configuration, context: BrowserContext): Promise<void> {
   // Fail on errors instead of tolerating them.
   webpackConfig.bail = true;
 
@@ -15,7 +18,7 @@ export async function monkeyPatch(webpackConfig: Configuration): Promise<void> {
   delete webpackConfig.optimization?.runtimeChunk;
   delete webpackConfig.optimization?.splitChunks;
 
-  await fixReact(webpackConfig);
+  await fixReact(webpackConfig, context);
 }
 
 /** This function mutates webpack config and fixes this in-browser error
@@ -37,21 +40,12 @@ See https://reactjs.org/link/invalid-hook-call for tips about how to debug and f
     at invokeGuardedCallback (<anonymous>:4209:31)
     at beginWork$1 (<anonymous>:24112:7)
 */
-async function fixReact(webpackConfig: Configuration): Promise<void> {
+async function fixReact(webpackConfig: Configuration, context: BrowserContext): Promise<void> {
+  await context.addInitScript({ content: fs.readFileSync(path.resolve(__dirname, '../src/react.development.js'), { encoding: 'utf-8' }) });
+  await context.addInitScript({ content: fs.readFileSync(path.resolve(__dirname, '../src/react-dom.development.js'), { encoding: 'utf-8' }) });
+
   webpackConfig.externals = {
-    React: 'react',
-    ReactDOM: 'react-dom'
+    react: 'React',
+    'react-dom': 'ReactDOM'
   }
-//   webpackConfig.optimization = {
-//     ...webpackConfig.optimization,
-//     runtimeChunk: 'single',
-// splitChunks: {
-//     cacheGroups: {
-//       vendor: {
-//         test: /node_modulesreact/,
-//         name: 'vendors',
-//         chunks: 'all',
-//       }
-//     }
-//   }
 }

@@ -32,4 +32,4 @@ Solution: call `await page.pause()` before the line where the error happens and 
 
 ## Contributing 
 
-Clone the repo, then run `npm test`.
+Clone the repo, install deps `npm i`, then run `npm test`.
