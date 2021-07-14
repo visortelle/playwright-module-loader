@@ -54,3 +54,5 @@ Solution: call `await page.pause()` before the line where the error happens and 
 ## Contributing
 
 Clone the repo, `npm run build`, then run `npm test`.
+
+Release: no CI or any other automation for now. Change package version manually, then `npm publish`, `git tag v1.x.x`, `git push --tag`.
