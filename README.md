@@ -19,7 +19,7 @@ Example: [Button.spec.ts](./packages/test-react-ts/src/Button/Button.spec.ts).
 
 The `React.createElement(Button.default)` instead of JSX syntax may looks ugly, but it's fixable after solving https://github.com/microsoft/playwright/issues/7121.
 
-For now I don't see how to easilly fix IDE support (typechicking, aucompletion).
+For now I don't see how to easilly fix IDE support (typechicking, autocompletion).
 
 I hope that a better approach will be provided by Playwright maintainers. In any case it shouldn't be hard to migrate tests to officially supported implementation. Tracking issue: https://github.com/microsoft/playwright/issues/7148.
 
