@@ -4,7 +4,6 @@ import { load } from '../testing';
 test("Button contains text", async ({ page, context }) => {
   await load({ Button: "src/Button/Button.tsx" }, context);
 
-  await page.pause();
   await page.evaluate(() => {
     ct.mount(React.createElement(Button.default));
   });
