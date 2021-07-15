@@ -13,9 +13,9 @@ This package tries to fix it.
 
 This module provides a simple component testing implemenation for the Playwright.
 
-[Example test](./packages/test-react-ts/src/Button/Button.spec.ts).
-
 There is an implemented `mount(reactElement)` helper function for React.
+
+Example: [Button.spec.ts](./packages/test-react-ts/src/Button/Button.spec.ts).
 
 The `React.createElement(Button.default)` instead of JSX syntax may looks ugly, but it's fixable after solving https://github.com/microsoft/playwright/issues/7121.
 
