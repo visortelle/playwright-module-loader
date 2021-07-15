@@ -13,7 +13,7 @@ This package tries to fix it.
 
 This module provides a simple component testing implemenation for the Playwright.
 
-[Example test](./packages/test-react-ts/src/Button/Button.spec.ts);
+[Example test](./packages/test-react-ts/src/Button/Button.spec.ts).
 
 There is an implemented `mount(reactElement)` helper function for React.
 
